@@ -1,5 +1,6 @@
 const Efecto = new Animacion();
 
+// Crea elementos por cada numero del array
 function dibujarNumeros() {
     let contenedor = document.getElementById("container");
     let numeros = [3, 7, 1, 4, 2, 6, 5];
@@ -9,15 +10,17 @@ function dibujarNumeros() {
     };
 };
 
+// Por cada elemento se creara un objeto
 function crearObjetos() {
     let elementos = document.getElementsByClassName("item");
     
     for(let h = 0; h < elementos.length; h++) {
         let elemento = new Elemento(elementos[h]);
-        items.push(elemento);
+        objetos.push(elemento);
     };
 };
 
+// Algoritmo Burbuja
 async function algoritmo(lista) {
     let inter = true;
     let i = 0;
@@ -32,16 +35,14 @@ async function algoritmo(lista) {
                 lista[j - 1] = temp;
                 inter = true;
                 
-                /* lista[j - 1].animacionIzquierda(lista[j]);
-                await lista[j].animacionDerecha(lista[j - 1]); */
                 await Efecto.animar(lista[j - 1], lista[j]);
             };
         };
     };
 };
 
-let items = [];
+let objetos = [];
 
 dibujarNumeros();
 crearObjetos();
-algoritmo(items);
+algoritmo(objetos);

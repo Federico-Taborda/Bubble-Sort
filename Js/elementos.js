@@ -28,9 +28,6 @@ class Elemento {
         this.propiedad.style.transition = this.transicion;
         this.cambiarEstilos("#ff4d4d");
 
-        // Si no funciona crear una rama para hacerlo con keyframes
-        // Y cambiar el nombre de esta rama a la de translate
-
         let moverX = elemento.x - this.x;
         
         await this.animacion(this.segundos, moverX, 0);

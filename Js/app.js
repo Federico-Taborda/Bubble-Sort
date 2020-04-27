@@ -1,3 +1,5 @@
+const Efecto = new Animacion();
+
 function dibujarNumeros() {
     let contenedor = document.getElementById("container");
     let numeros = [3, 7, 1, 4, 2, 6, 5];
@@ -30,8 +32,9 @@ async function algoritmo(lista) {
                 lista[j - 1] = temp;
                 inter = true;
                 
-                lista[j - 1].animacionIzquierda(lista[j]);
-                await lista[j].animacionDerecha(lista[j - 1]);
+                /* lista[j - 1].animacionIzquierda(lista[j]);
+                await lista[j].animacionDerecha(lista[j - 1]); */
+                await Efecto.animar(lista[j - 1], lista[j]);
             };
         };
     };

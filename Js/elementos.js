@@ -1,65 +1,61 @@
 class Elemento {
-    constructor(objeto) {
-        this.objeto = objeto;
-        this.valor = parseInt(this.objeto.children[0].textContent);
-        this.style = window.getComputedStyle(this.objeto);
-        this.x = this.objeto.getBoundingClientRect().x; 
-        this.y = this.objeto.getBoundingClientRect().y; 
-        this.margin = this.obtenerMargen();
-        this.height = this.obtenerAlto();
+    constructor(elemento) {
+        this.propiedad = elemento;
+        this.valor = parseInt(this.propiedad.children[0].textContent);
+        this.style = window.getComputedStyle(this.propiedad);
+        this.x = this.propiedad.getBoundingClientRect().x;
+        this.transicion = "0.4s";
+        this.segundos = 400;
     };
 
-    // Obtiene el margen total del elemento actual
-    obtenerMargen() {
-        let margen = this.style.getPropertyValue("margin");
-        let arrMargin = margen.split("p");
-        
-        return parseInt(arrMargin[0]);
+    // Obtiene la x del elemento
+    obtenerX() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.x = this.propiedad.getBoundingClientRect().x);
+            }, this.segundos + 100);
+        });
     };
     
-    // Obtiene el alto total del elemento actual
-    obtenerAlto() {
-        let alto = this.style.getPropertyValue("height");
-        let arrHeight = alto.split("p");
-        
-        return parseInt(arrHeight[0]);
+    // Cambia los colores del elemento
+    cambiarEstilos(text) {
+        this.propiedad.style.borderColor = text;
+        this.propiedad.style.color = text;
     };
+    
+    // Mueve un elemento hacia la izquierda
+    async animacionIzquierda(elemento) {
+        this.propiedad.style.transition = this.transicion;
+        this.cambiarEstilos("#ff4d4d");
 
-    async animacionArriba(object) {
-        this.objeto.style.transition = "0.5s";
-        let subir = this.margin - this.height - 20;
-        let moverX = object.x - this.x
-        let segundos = 1000;
-    
-        // Sube el elemento
-        /* await this.animacion(segundos, moverX, 0) */
-        await this.animacion(segundos, 0, subir);
-        // Lo mueve hasta x dada
-        await this.animacion(segundos, moverX, subir);
-        // Vuelve a su y original
-        await this.animacion(segundos, moverX, 0);
+        // Si no funciona crear una rama para hacerlo con keyframes
+        // Y cambiar el nombre de esta rama a la de translate
+
+        let moverX = elemento.x - this.x;
         
+        await this.animacion(this.segundos, moverX, 0);
+        await this.obtenerX();
+        
+        this.cambiarEstilos("#2ecc71");
     };
     
-    async animacionAbajo(object) {
-        this.objeto.style.transition = "0.5s";
-        let bajar = this.margin + this.height + 20;
+    // Mueve un elemento hacia la derecha
+    async animacionDerecha(object) {
+        this.propiedad.style.transition = this.transicion;
+        this.cambiarEstilos("#ff4d4d");
         let moverX = object.x - this.x;
-        let segundos = 1000;
-
-        // Baja el elemento
-        await this.animacion(segundos, 0, bajar);
-        // Lo mueve hasta x dada
-        await this.animacion(segundos, moverX, bajar);
-        // Vuelve a su y original
-        await this.animacion(segundos, moverX, 0);
         
+        await this.animacion(this.segundos, moverX, 0);
+        await this.obtenerX();
+
+        this.cambiarEstilos("#2ecc71");
     };
     
+    // Tiempo que tomara la animacion
     animacion(time, x, y) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(this.objeto.style.transform = `translate(${x}px, ${y}px)`);
+                resolve(this.propiedad.style.transform = `translate(${x}px, ${y}px)`);
             }, time);
         });
     };

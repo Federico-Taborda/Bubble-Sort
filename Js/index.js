@@ -12,7 +12,7 @@ function dibujarNumeros() {
 };
 
 // Por cada Burbuja se creara un objeto
-function crearBurbuja() {
+function crearBurbujas() {
     let burbujas = document.getElementsByClassName("item");
     
     for(let h = 0; h < burbujas.length; h++) {
@@ -43,5 +43,5 @@ async function algoritmo(lista) {
 };
 
 dibujarNumeros();
-crearBurbuja();
+crearBurbujas();
 algoritmo(objetos);

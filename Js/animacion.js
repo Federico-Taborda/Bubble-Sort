@@ -1,20 +1,23 @@
 class Animacion {
     constructor() {
-        this.tiempo = 400;
+        this.tiempo = 300;
     };
 
     async animar(burbuja1, burbuja2) {
-        // Color de las burbujas en rojo
+        // Cambia el color de las burbujas a rojo
         burbuja1.cambiarEstilos("#ff4d4d");
         burbuja2.cambiarEstilos("#ff4d4d");
-        
-        // Anima ambas burbujas
-        await Promise.all([this.animacion(burbuja1, burbuja2.x - burbuja1.x), this.animacion(burbuja2, burbuja1.x - burbuja2.x)])
         
         // Obtiene la x de las burbujas
         await Promise.all([burbuja1.obtenerX(this.tiempo), burbuja2.obtenerX(this.tiempo)]);
 
-        // Color de las burbujas en verde
+        // Anima ambas burbujas
+        await Promise.all([this.animacion(burbuja1, await burbuja2.obtenerX() - burbuja1.xInicial), this.animacion(burbuja2, await burbuja1.obtenerX() - burbuja2.xInicial)])
+        
+        // Obtiene la x de las burbujas
+        await Promise.all([burbuja1.obtenerX(this.tiempo), burbuja2.obtenerX(this.tiempo)]);
+        
+        // Cambia el color de las burbujas a verde
         burbuja1.cambiarEstilos("#2ecc71");
         burbuja2.cambiarEstilos("#2ecc71");
     };

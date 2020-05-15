@@ -7,12 +7,12 @@ class Animacion {
         // Cambia el color de las burbujas a rojo
         burbuja1.cambiarEstilos("#ff4d4d");
         burbuja2.cambiarEstilos("#ff4d4d");
-        
-        // Obtiene la x de las burbujas
-        await Promise.all([burbuja1.obtenerX(this.tiempo), burbuja2.obtenerX(this.tiempo)]);
 
         // Anima ambas burbujas
-        await Promise.all([this.animacion(burbuja1, await burbuja2.obtenerX() - burbuja1.xInicial), this.animacion(burbuja2, await burbuja1.obtenerX() - burbuja2.xInicial)])
+        await Promise.all([
+            this.animacion(burbuja1, await burbuja2.obtenerX() - burbuja1.xInicial),
+            this.animacion(burbuja2, await burbuja1.obtenerX() - burbuja2.xInicial)
+        ]);
         
         // Obtiene la x de las burbujas
         await Promise.all([burbuja1.obtenerX(this.tiempo), burbuja2.obtenerX(this.tiempo)]);

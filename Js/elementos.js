@@ -1,23 +1,23 @@
-class Elemento {
-    constructor(elemento) {
-        this.propiedad = elemento;
+class Burbuja {
+    constructor(burbuja) {
+        this.propiedad = burbuja;
         this.valor = parseInt(this.propiedad.children[0].textContent);
         this.style = window.getComputedStyle(this.propiedad);
         this.x = this.propiedad.getBoundingClientRect().x;
     };
 
-    // Obtiene la x del elemento
-    obtenerX(time) {
+    // Obtiene la x de la burbuja
+    obtenerX(tiempo) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(this.x = this.propiedad.getBoundingClientRect().x);
-            }, time + 100);
+            }, tiempo + 100);
         });
     };
     
-    // Cambia los colores del elemento
-    cambiarEstilos(text) {
-        this.propiedad.style.borderColor = text;
-        this.propiedad.style.color = text;
+    // Cambia los colores de la burbuja
+    cambiarEstilos(texto) {
+        this.propiedad.style.borderColor = texto;
+        this.propiedad.style.color = texto;
     };
 };

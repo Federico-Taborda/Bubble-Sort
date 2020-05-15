@@ -1,4 +1,5 @@
 const Efecto = new Animacion();
+let objetos = [];
 
 // Crea elementos por cada numero del array
 function dibujarNumeros() {
@@ -40,8 +41,6 @@ async function algoritmo(lista) {
         };
     };
 };
-
-let objetos = [];
 
 dibujarNumeros();
 crearObjetos();

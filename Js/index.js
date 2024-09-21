@@ -1,14 +1,12 @@
 const Efecto = new Animacion();
 let objetos = [];
 
-// Dibuja burbujas por cada numero del array
+// Crea una lista desordenada de numeros y dibujara una burbuja por cada numero
 function dibujarNumeros() {
     let contenedor = document.getElementById("container");
-    let numeros = [3, 7, 1, 4, 2, 6, 5];
+    let numeros = [9, 3, 7, 1, 10, 4, 2, 6, 5, 8];
     
-    for(let j = 0; j < numeros.length; j++) {
-        contenedor.innerHTML += `<div class="item"><h1>${numeros[j]}</h1></div>`;
-    };
+    numeros.forEach(elemento => contenedor.innerHTML += `<div class="item"><h1>${elemento}</h1></div>`)
 };
 
 // Por cada Burbuja se creara un objeto
